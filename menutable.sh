@@ -1,4 +1,5 @@
 #!/bin/bash
+
 echo "===================================="
 echo "welcome to our dbms system"
 echo "this to create table"
@@ -12,7 +13,7 @@ List_Tables ) . ../../listtable.sh
 ;;
 Drop_Table ) . connectDB.sh
 ;;
-Insert_into_Table ) . dropDB.sh
+Insert_into_Table ) . ../../insertintoTable.sh
 ;;
 Select_From_Table ) . connectDB.sh
 ;;

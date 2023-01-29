@@ -13,29 +13,19 @@ echo "Database Name Mustnot be Empty Please try again !!!!!!"
 
 elif [ "${database_Name//[!0-9]}" != "" ]  
 then
+
 echo "Database Name Mustnot Contain Number Please try again !!!!!!!"
 . createdb.sh
 
-elif [[ $database_Name =~ ['!@#$%^&*()_+/\*//'] ]]
+elif [[ $database_Name =~ ["!@#$%^&*()_\/+*/\:"] ]]
 then
 echo "Database Name Mustnot Contain this !@#$%^&*()_+ Please try again !!!!!!!"
 . createdb.sh
-		elif [[ $database_Name =~ [/.:\|\-] ]]; then
-echo "Database Name Mustnot Contain \/ : - Please try again !!!!!!!"
-. createdb.sh
-
+		
 else
 mkdir DB/$database_Name
-echo "Database Created "
+
+echo "Database Created Successfully ... "
 . Main_Menu.sh
 
 fi
-
-
-
-# validation >>>>>
-
-# no name > echo enter valid database name  
-# name without numbers 
-# no special char
-
