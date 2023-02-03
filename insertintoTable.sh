@@ -17,41 +17,44 @@ for (( i = 2; i < $field ; i++ ))
 do
 name=$(awk -F : 'BEGIN {field = '$i'}{if(NR==1){print $field;}}' $TableName)
 colType=$(awk -F : 'BEGIN {field = '$i'}{if(NR==2){print $field;}}' $TableName)
-echo "Enter the value of field ($name):"
+echo "Enter the value of field $name : "
+read val
+while [ -z $val ]
+do 
+echo "please enter un empty value enter again >> "
 read val
 
+done
 if [[ $colType == "int" ]]
 then
 while ! [[ $val =~ ^[0-9]*$ ]] 
 do
-echo  "Invalid colType!"
-read val
-while  [[ $val == "" ]] 
-do
-echo  "This field must not be empty!"
+echo  " colType is not correct enter again"
 read val
 done
+else
+while ! [[ $val =~ [a-zA-Z] ]] 
+do
+echo  " colType is not correct enter again"
+read val
 done
 fi
 row+="$val:"
+
 done
 echo $row>>$TableName
 clear
-echo "The record is inserted to $TableName successfully :)"
-echo "Insert another record?"
+echo "The record is inserted to $TableName successfully..."
+echo "are you need to insert again "
 select check in "Yes" "No"
 do
 case $check in
 "Yes" ) clear ; . ../../insertintoTable.sh  ; clear ; break;;
 "No" )  clear ; . ../../menutable.sh  ; clear ; break;;
-* ) echo "Invalid choice";
+* ) echo "select from 1 and 2 only";
 esac
 done
 
-
-
-
 else # for if [[ -f "$TableName" ]]
-echo "any thing if table isnt ok "
 . ../../insertintoTable.sh
 fi # for if [[ -f "$TableName" ]]

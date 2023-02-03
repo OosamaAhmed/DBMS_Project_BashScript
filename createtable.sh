@@ -20,6 +20,11 @@ elif [[ $TableName =~ ["!@#$%^&*()_+/\*//"] ]]
 then
 echo "Table Name Mustnot Contain this !@#$%^&*()_+ Please try again !!!!!!!"
 . ../../createtable.sh
+
+elif [[ $TableName =~ [' '] ]]
+then
+echo "Table Name Mustnot Contain space"
+. ../../createtable.sh
 else
 read -p "Enter Colum Number :-> "  colnum 
 while [[ -z $colnum ]]
@@ -39,6 +44,11 @@ row1="ID:"
   while [ $colnum -ge $counter ]
   do
 			read -p "enter field name " field
+      while [ -z $field ]
+      do
+echo  "table field mustnot be empty"
+      			read -p "enter field name " field
+      done
 			row1+="$field:"
 			echo "Enter the colType:"
 			select colType in "Integer" "String"
