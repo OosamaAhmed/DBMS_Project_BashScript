@@ -1,27 +1,29 @@
 #!/bin/bash
 
-echo "===================================="
+echo "=============menu table======================="
 echo "welcome to our dbms system"
 echo "this to create table"
+echo "===================================="
+
 # ================ select menu to table =======================
-select choice in Create_Table  List_Tables  Drop_Table  Insert_into_Table  Select_From_Table Delete_From_Table  Update_Table Main_Menu Exit
+select choice in Create_Table  List_Tables  Drop_Table  Insert_into_Table  Select_Table Delete_From_Table  Update_Table Main_Menu Exit
 do 
 case $choice in 
-Create_Table ) . ../../createtable.sh
+Create_Table ) . ../../createtable.sh  #
 ;;
-List_Tables ) . ../../listtable.sh
+List_Tables ) . ../../List_Tables.sh   #
 ;;
-Drop_Table ) . connectDB.sh
+Drop_Table ) . ../../Drop_Table.sh     #
 ;;
-Insert_into_Table ) . ../../insertintoTable.sh
+Insert_into_Table ) . ../../insertintoTable.sh   #
 ;;
-Select_From_Table ) . connectDB.sh
+Select_Table ) . ../../Select_Table.sh
 ;;
-Delete_From_Table ) . connectDB.sh
+Delete_From_Table ) . ../../Delete_From_Table.sh
 ;;
-Update_Table ) . connectDB.sh
+Update_Table ) . ../../Update_Table.sh
 ;;
-Main_Menu ) . Main_Menu.sh
+Main_Menu ) . Main_Menu.sh  #
 ;;
 Exit ) 
 cd .. ; 

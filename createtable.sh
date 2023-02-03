@@ -1,6 +1,7 @@
 #!/bin/bash
 
-read -p "Enter Table Name : " TableName
+read -p "Enter Table Name : " 
+
 if [[ -f $TableName ]]
 then
 echo "Table alredy Exist"

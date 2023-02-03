@@ -13,7 +13,7 @@ id=0
 row="$id:"
 
 		field=$(awk -F : 'END{print NF}' $TableName)
-		for (( i = 2; i <= $field-1 ; i++ )) 
+		for (( i = 2; i < $field ; i++ )) 
 		do
 			name=$(awk -F : 'BEGIN {field = '$i'}{if(NR==1){print $field;}}' $TableName)
 			colType=$(awk -F : 'BEGIN {field = '$i'}{if(NR==2){print $field;}}' $TableName)
@@ -33,12 +33,7 @@ row="$id:"
 					done
 				done
 			fi
-			if [[ i -eq $field ]]
-			then
-				row+="$val"
-			else
 				row+="$val:"
-			fi
 		done
 		echo $row>>$TableName
 		clear
@@ -60,4 +55,3 @@ else # for if [[ -f "$TableName" ]]
 echo "any thing if table isnt ok "
 . ../../insertintoTable.sh
   fi # for if [[ -f "$TableName" ]]
-

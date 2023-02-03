@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "=============menu DataBase ======================="
 
 echo "welcome to our dbms system"
 echo "this to create database"
