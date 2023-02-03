@@ -10,9 +10,11 @@ echo "========================================"
 
 . ../../menutable.sh
 
+elif [ -z $TableName ]
+then 
+echo "enter name not emoty name"
+. ../../menutable.sh
 else 
 echo "this table  dosnot found"
-
 . ../../menutable.sh
-
 fi 

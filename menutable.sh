@@ -17,13 +17,15 @@ Drop_Table ) . ../../Drop_Table.sh     #
 ;;
 Insert_into_Table ) . ../../insertintoTable.sh   #
 ;;
-Select_Table ) . ../../Select_Table.sh
+Select_Table ) . ../../Select_Table.sh   #
 ;;
-Delete_From_Table ) . ../../Delete_From_Table.sh
+Delete_From_Table ) . ../../Delete_From_Table.sh   #
 ;;
 Update_Table ) . ../../Update_Table.sh
 ;;
-Main_Menu ) . Main_Menu.sh  #
+Main_Menu ) 
+clear
+. ../../Main_Menu.sh  #
 ;;
 Exit ) 
 cd .. ; 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-read -p "Enter Table Name : " 
+read -p "Enter Table Name : " TableName
 
 if [[ -f $TableName ]]
 then
