@@ -31,59 +31,30 @@ do
 echo "col num Mustnot Contain  char !!!!!!!"
 read -p "Enter Colum Number :-> "  colnum 
 done
-
-  counter=1 
-  sep=":" 
-  pkey=""
-  tablerow=""
+row1="ID:"
+		row2="int:"
+		echo "created id as pk in col one in the table ... "
+  counter=2 
   while [ $colnum -ge $counter ]
   do
-read -p "Enter col Name -> " colName
-          while [[ -z $colName ]]
-          do
-          echo "col name mustnotbe Empty "
-          read -p "Enter Colum name :-> "  colName 
-          done
-read -p "Select Type of Column -> $colName "
-    select var in "int" "str"
-    do
-      case $var in
-        int ) colType="int" 
-            echo $colType 
-break
-        ;;
-        str ) colType="str" 
-            echo $colType 
-break
-        ;;
-        * ) echo "Enter valid Choise -> " ;;
-      esac
-    done
-  if [[ $pkey == ""  ]];
-   then
-echo "it will be > pk yes or no"
-      select var in "yes" "no"
-      do
-        case $var in
-          yes ) pKey="pk";
-          tablerow+=$colName$sep$colType$sep$pKey$sep
-          break
-          ;;
-          no )
-          tablerow+=$colName$sep$colType$sep
-          break
-          ;;
-          * ) echo "Wrong Choice" ;;
-        esac
-      done
-    else
-      tablerow+=$colName$sep$colType$sep
-    fi
+			read -p "enter field name " field
+			row1+="$field:"
+			echo "Enter the colType:"
+			select colType in "Integer" "String"
+			do
+				case $colType in
+					"Integer" ) row2+="int:"; break;;
+					"String" ) row2+="string:"; break;;
+					* ) echo "select again";
+				esac
+			done
 ((counter++))
 done
 fi
 touch $TableName
-echo $tablerow >> $TableName
+	echo $row1>>$TableName
+		echo $row2>>$TableName
+		
 echo $TableName" Created successfully...."
 . ../../menutable.sh
 

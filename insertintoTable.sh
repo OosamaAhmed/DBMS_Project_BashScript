@@ -2,55 +2,62 @@
 clear
 echo "===============welcome You Should  insert Data to===================="  
 read -p "Enter Table Name : " TableName
-while ! [[ -f $TableName ]]
-do
-echo " Enter A  Name again >>>>"
-read -p "Enter Table Name : " TableName
-done
-echo "table name is true"
-#  `awk 'END{print NR}' $TableName`
-sep=":"
 
-for (( i=2 ; i<=`awk 'END{print NR}' $TableName` ;i++ ))
-do
-echo table is empty
-# echo $i
-    colName=$(awk 'BEGIN{FS=":"}{ if(NR=='$i') print $1}' $TableName)
-        colType=$(awk 'BEGIN{FS=":"}{ if(NR=='$i') print $2}' $TableName)
-    colKey=$(awk 'BEGIN{FS=":"}{ if(NR=='$i') print $3}' $TableName)
+if [[ -f "$TableName" ]]
+	then
+  
+num=$(awk -F : 'END{print $1}' $TableName)
+id=0
+((id = num + 1))
+
+row="$id:"
+
+		field=$(awk -F : 'END{print NF}' $TableName)
+		for (( i = 2; i <= $field ; i++ )) 
+		do
+			name=$(awk -F : 'BEGIN {field = '$i'}{if(NR==1){print $field;}}' $TableName)
+			colType=$(awk -F : 'BEGIN {field = '$i'}{if(NR==2){print $field;}}' $TableName)
+			echo "Enter the value of field ($name):"
+			read val
+			
+			if [[ $colType == "int" ]]
+			then
+				while ! [[ $val =~ ^[0-9]*$ ]] 
+				do
+					echo  "Invalid colType!"
+					read val
+					while  [[ $val == "" ]] 
+					do
+						echo  "This field must not be empty!"
+						read val
+					done
+				done
+			fi
+			if [[ i -eq $field ]]
+			then
+				row+="$val"
+			else
+				row+="$val:"
+			fi
+		done
+		echo $row>>$TableName
+		clear
+		echo "The record is inserted to $TableName successfully :)"
+		echo "Insert another record?"
+		select check in "Yes" "No"
+		do
+			case $check in
+				"Yes" ) clear ; . ../../insertintoTable.sh  ; clear ; break;;
+				"No" )  clear ; . ./../menutable.sh  ; clear ; break;;
+				* ) echo "Invalid choice";
+			esac
+		done
+		
 
 
 
-    echo  "$colName  .... enter your data " 
-     read insert
- # for data type
-if [[ $colType == "int" ]]
-then
-while ! [[ $insert =~ [0-9]*$ ]]
-do 
-echo "invalid data type .."
-            echo "$colName ($colType) "
-     read insert
-done
-fi
-
-# for pk
-  if [[ $colKey == "pk" ]]
-   then
-      while [[ true ]]
-       do
-        if [[ $colType == "int" ]]
-        then
-          while ! [[ $data =~ ^[0-9]*$ ]]
-           do
-            echo -e "invalid datatype !!"
-            echo "$colName ($colType) "
-            read data
-          done
-        fi
-done
-fi
-
-done
-
+else # for if [[ -f "$TableName" ]]
+echo "any thing if table isnt ok "
+. ../../insertintoTable.sh
+  fi # for if [[ -f "$TableName" ]]
 
