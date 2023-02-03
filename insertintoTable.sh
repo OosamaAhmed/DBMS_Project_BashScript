@@ -13,7 +13,7 @@ id=0
 row="$id:"
 
 		field=$(awk -F : 'END{print NF}' $TableName)
-		for (( i = 2; i <= $field ; i++ )) 
+		for (( i = 2; i <= $field-1 ; i++ )) 
 		do
 			name=$(awk -F : 'BEGIN {field = '$i'}{if(NR==1){print $field;}}' $TableName)
 			colType=$(awk -F : 'BEGIN {field = '$i'}{if(NR==2){print $field;}}' $TableName)
@@ -48,7 +48,7 @@ row="$id:"
 		do
 			case $check in
 				"Yes" ) clear ; . ../../insertintoTable.sh  ; clear ; break;;
-				"No" )  clear ; . ./../menutable.sh  ; clear ; break;;
+				"No" )  clear ; . ../../menutable.sh  ; clear ; break;;
 				* ) echo "Invalid choice";
 			esac
 		done
