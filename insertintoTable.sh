@@ -17,30 +17,33 @@ for (( i = 2; i < $field ; i++ ))
 do
 name=$(awk -F : 'BEGIN {field = '$i'}{if(NR==1){print $field;}}' $TableName)
 colType=$(awk -F : 'BEGIN {field = '$i'}{if(NR==2){print $field;}}' $TableName)
-echo "Enter the value of field $name : "
-read val
+read -p "Enter the value of field $name : " val
 while [ -z $val ]
 do 
-echo "please enter un empty value enter again >> "
-read val
-
+read -p "please enter un empty value enter again >> " val
 done
 if [[ $colType == "int" ]]
 then
 while ! [[ $val =~ ^[0-9]*$ ]] 
 do
-echo  " colType is not correct enter again"
-read val
+read -p  " colType is not correct enter again" val 
+done
+while [ -z $val ]
+do 
+read -p "please enter un empty value enter again >> " val
 done
 else
 while ! [[ $val =~ [a-zA-Z] ]] 
 do
-echo  " colType is not correct enter again"
-read val
+read -p  " colType is not correct enter again" val
+
+done
+while [ -z $val ]
+do 
+read -p "please enter un empty value enter again >> " val
 done
 fi
 row+="$val:"
-
 done
 echo $row>>$TableName
 clear
