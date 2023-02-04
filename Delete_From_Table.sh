@@ -1,19 +1,19 @@
 #!/bin/bash
 
 read -p "enter table name " TableName
-if [ -f $TableName ]
-then 
-clear
+while ! [ -f $TableName ]
+do
+read -p "enter table name again there was no table in this name ... " TableName
+done
 echo "==================data in table  $TableName is ================="
 cat $TableName 
 echo "========================================"
-fi
 echo "Enter id  to delete its record  "
 read id
 
 # awk -F ":" '{NF=1; print $1}' ok | grep "\b2\b"  ok
 # awk -F ":" '{NF=1; print $1}' $TableName | grep "\b2\b"  $TableName
-if [ "$id" = "`awk -F ":" '{NF=1; print $1}' $TableName | grep "\b$id\b" `" ]
+if [ "$id" = "`awk -F ":" '{NF=1; print $1}' $TableName | grep $id `" ]
 then 
 row=`awk 'BEGIN{FS=":"}{if ($1=="'$id'") print NR}' $TableName`
 `sed -i ''$row'd' $TableName`
