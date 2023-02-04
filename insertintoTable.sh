@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo "===============welcome You Should  insert Data to===================="  
+echo "insert Data................................... "  
 read -p "Enter Table Name : " TableName
 
 if [[ -f "$TableName" ]]

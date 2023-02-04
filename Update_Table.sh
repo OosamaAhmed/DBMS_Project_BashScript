@@ -6,7 +6,7 @@ while ! [ -f $TableName ]
 do
 read -p "enter table name again there was no table in this name ... " TableName
 done
-echo "==================data in table  $TableName is ================="
+echo "data in table  $TableName is ........................................"
 cat $TableName 
 echo "========================================"
 echo "Enter id  to delete its record  "

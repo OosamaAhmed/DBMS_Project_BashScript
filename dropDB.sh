@@ -6,5 +6,5 @@ rm -r ./DB/$database_Name
 echo " Database removed Successfully !"
 else
 echo "There was no database in this name enter name of database again"
-. Main_Menu.sh
+ . Main_Menu.sh
 fi

@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "=============menu DataBase ======================="
+echo "menu DataBase......................................"
 
 echo "welcome to our dbms system"
 echo "this to create database"
@@ -17,7 +17,7 @@ Connect_To_Databases ) . connectDB.sh
 Drop_Database ) . dropDB.sh
 ;;
 Exit )
-clear
+clear;
 break
 esac
 done
