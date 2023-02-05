@@ -3,7 +3,7 @@ ls DB/
 
 read -p "name of database to start in it :  " database_Name
 if [[ -z $database_Name ]]
-# -z Length of string is zero ($database_Name)
+
 then
 echo "name must not be Empty"
 . connectDB.sh

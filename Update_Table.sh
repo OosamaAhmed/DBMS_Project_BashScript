@@ -18,27 +18,26 @@ roww=`awk 'BEGIN{FS=":"}{if ($1=="'$idd'") print NR}' $TableName`
 `sed -i ''$roww'd' $TableName`
 echo "============ update now =========="
 else 
-echo "This id doesn't exist"
+echo "This id isnot found"
 . ../../menutable.sh
 fi
-#  insert agian =======================================
 
 num=$(awk -F : 'END{print $1}' $TableName)
 id=0
 ((id = num + 1))
 row="$id:"
-field=$(awk -F : 'END{print NF}' $TableName)
-for (( i = 2; i < $field ; i++ )) 
+numberfield=$(awk -F : 'END{print NF}' $TableName)
+for (( i = 2; i < $numberfield ; i++ )) 
 do
-name=$(awk -F : 'BEGIN {field = '$i'}{if(NR==1){print $field;}}' $TableName)
-colType=$(awk -F : 'BEGIN {field = '$i'}{if(NR==2){print $field;}}' $TableName)
-echo "Enter the value of field ($name):"
+fieldname=$(awk -F : 'BEGIN {numberfield = '$i'}{if(NR==1){print $numberfield;}}' $TableName)
+colType=$(awk -F : 'BEGIN {numberfield = '$i'}{if(NR==2){print $numberfield;}}' $TableName)
+echo "Enter the value of numberfield ($fieldname):"
 read val
 if [[ $colType == "int" ]]
 then
 while ! [[ $val =~ ^[0-9]*$ ]] 
 do
-echo  "Invalid colType!"
+echo  "this isnot valied type (not the same)"
 read val
 while  [[ $val == "" ]] 
 do
@@ -51,6 +50,6 @@ row+="$val:"
 done
 echo $row>>$TableName
 clear
-echo "The record is updated to $TableName successfully ";
+echo "The record in $TableName is updated successfully ";
 
 . ../../menutable.sh

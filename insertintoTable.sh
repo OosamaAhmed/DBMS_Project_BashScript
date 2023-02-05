@@ -12,38 +12,38 @@ id=0
 
 row="$id:"
 
-field=$(awk -F : 'END{print NF}' $TableName)
-for (( i = 2; i < $field ; i++ )) 
+numberfield=$(awk -F : 'END{print NF}' $TableName)
+for (( i = 2; i < $numberfield ; i++ )) 
 do
-name=$(awk -F : 'BEGIN {field = '$i'}{if(NR==1){print $field;}}' $TableName)
-colType=$(awk -F : 'BEGIN {field = '$i'}{if(NR==2){print $field;}}' $TableName)
-read -p "Enter the value of field $name : " val
-while [ -z $val ]
+fieldname=$(awk -F : ' {numberfield = '$i'}{if(NR==1){print $numberfield;}}' $TableName)
+colType=$(awk -F : ' {numberfield = '$i'}{if(NR==2){print $numberfield;}}' $TableName)
+read -p "Enter the value of numberfield $fieldname : " value
+while [ -z $value ]
 do 
-read -p "please enter un empty value enter again >> " val
+read -p "please enter un empty value enter again >> " value
 done
 if [[ $colType == "int" ]]
 then
-while ! [[ $val =~ ^[0-9]*$ ]] 
+while ! [[ $value =~ ^[0-9]*$ ]] 
 do
-read -p  " colType is not correct enter again" val 
+read -p  " colType is not correct enter again" value 
 done
-while [ -z $val ]
+while [ -z $value ]
 do 
-read -p "please enter un empty value enter again >> " val
+read -p "please enter un empty value enter again >> " value
 done
 else
-while ! [[ $val =~ [a-zA-Z] ]] 
+while ! [[ $value =~ [a-zA-Z] ]] 
 do
-read -p  " colType is not correct enter again" val
+read -p  " colType is not correct enter again" value
 
 done
-while [ -z $val ]
+while [ -z $value ]
 do 
-read -p "please enter un empty value enter again >> " val
+read -p "please enter un empty value enter again >> " value
 done
 fi
-row+="$val:"
+row+="$value:"
 done
 echo $row>>$TableName
 clear

@@ -11,8 +11,6 @@ echo "========================================"
 echo "Enter id  to delete its record  "
 read id
 
-# awk -F ":" '{NF=1; print $1}' ok | grep "\b2\b"  ok
-# awk -F ":" '{NF=1; print $1}' $TableName | grep "\b2\b"  $TableName
 if [ "$id" = "`awk -F ":" '{NF=1; print $1}' $TableName | grep $id `" ]
 then 
 row=`awk 'BEGIN{FS=":"}{if ($1=="'$id'") print NR}' $TableName`
@@ -20,7 +18,7 @@ row=`awk 'BEGIN{FS=":"}{if ($1=="'$id'") print NR}' $TableName`
 echo "Record deleted successfully"
 . ../../menutable.sh
 else 
-echo "This id doesn't exist"
+echo "This id isnot found please select from table id "
 . ../../menutable.sh
 fi
 

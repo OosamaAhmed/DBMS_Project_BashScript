@@ -2,7 +2,7 @@
 # ====================== to make a new data base ==============================
 read -p "Enter Database Name :  " database_Name
 # =====================to check if dir is taken or not ========================
-if [[ -d DB/$database_Name  ]]
+if [[ -d DB/$database_Name  ]] 
 then
 echo "Database alredy taken"
 . createdb.sh
@@ -24,7 +24,7 @@ echo "Database Name Mustnot Contain this !@#$%^&*()_+ Please try again !!!!!!!"
 		
 else
 mkdir DB/$database_Name
-
+clear
 echo "Database Created Successfully ... "
 . Main_Menu.sh
 

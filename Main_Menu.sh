@@ -17,7 +17,7 @@ Connect_To_Databases ) . connectDB.sh
 Drop_Database ) . dropDB.sh
 ;;
 Exit )
-clear;
-break
+exit
+;;
 esac
 done

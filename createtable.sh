@@ -47,19 +47,20 @@ do
 read -p "enter field name " field
 # touch $TableName
 
-while [ -z $field ]
+while [[ -z $field ]]
 do
 
 echo  "table field mustnot be empty"
 read -p "enter field name " field
 done
 
-# while [ "$field" = "`awk 'BEGIN{FS=":"} {NR=1 ; print $1,$2,$3}' $TableName | grep $field `" ]
+# while [ "$field" = "`awk 'BEGIN{FS=":"} {NR=1 ; print $1,$2,$3}' $TableName | grep $row1 `" ]
 # do
 # echo  "===== Error .. there was a field in this name ==== "
 # read -p "enter field name " field
 # done
 row1+="$field:"
+
 echo "Enter the colType:"
 select colType in "Integer" "String"
 do

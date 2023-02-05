@@ -28,10 +28,7 @@ cd .. ;
 . Main_Menu.sh  #
 ;;
 Exit ) 
-cd .. ; 
-cd .. ; 
-clear
-break 2
+exit
 ;;
 esac
 done
