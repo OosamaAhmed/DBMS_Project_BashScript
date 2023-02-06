@@ -10,7 +10,7 @@ num=$(awk -F : 'END{print $1}' $TableName)
 id=0
 ((id = num + 1))
 
-row="$id:"
+row="$id:osaama:"
 
 numberfield=$(awk -F : 'END{print NF}' $TableName)
 for (( i = 2; i < $numberfield ; i++ )) 
